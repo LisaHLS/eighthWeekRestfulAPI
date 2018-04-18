@@ -2,7 +2,6 @@ package com.example.employee.restfulapi.entity;
 
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 public class Employee {
@@ -14,6 +13,10 @@ public class Employee {
     private String gender;
     private Integer salary;
     private Long companyId;
+
+    @ManyToOne(targetEntity = Company.class)
+    @JoinColumn(name ="companyId", insertable = false, updatable = false)
+    private Company company;
 
     public Employee() {
     }
@@ -42,9 +45,9 @@ public class Employee {
         this.salary = salary;
     }
 
-    public long getId() {
-        return id;
-    }
+//    public long getId() {
+//        return id;
+//    }
 
     public String getName() {
         return name;
@@ -71,4 +74,5 @@ public class Employee {
     public void setGender(String gender) {
         this.gender = gender;
     }
+
 }
